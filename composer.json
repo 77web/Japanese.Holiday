@@ -11,5 +11,8 @@
         "psr-4":{
             "Japanese\\Holiday\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3"
     }
 }
