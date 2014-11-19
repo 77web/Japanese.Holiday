@@ -31,8 +31,8 @@ abstract class CalculatorAggregate
 
                 $holidays[$date->format('Y-m-d')] = $definition['caption'];
 
-                if (7 === $date->format('N') && 'happymonday' !== $definition['type']) {
-                    $substitute = $this->calculators['substitute']->computeDate($year, ['holiday_at_sunday' => $date, 'offset' => 1]);
+                if (7 == $date->format('N') && 'happymonday' !== $definition['type']) {
+                    $substitute = $this->calculators['substitution']->computeDate($year, ['holiday_at_sunday' => $date, 'offset' => 1]);
                     $holidays[$substitute->format('Y-m-d')] = self::SUBSTITUTE_HOLIDAY_CAPTION;
                 }
             }

@@ -29,11 +29,11 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \LogicException
      */
-    public function test_undefined_method()
+    public function test_getHolidayName()
     {
         $repository = new Repository();
-        $repository->undefine_method();
+
+        $this->assertEquals('元旦', $repository->getHolidayName('2014-01-01'));
     }
 }
