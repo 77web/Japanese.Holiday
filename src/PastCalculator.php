@@ -22,14 +22,15 @@ class PastCalculator extends CalculatorAggregate
     }
 
     /**
-     * @param int|null $year
+     * @param int $year
      * @return Holiday[]
      */
-    public function computeDates($year = null)
+    public function computeDates($year)
     {
         $holidays = [];
         foreach ($this->configuration as $definition) {
-            $holidays[] = new Holiday(new \DateTime($definition['date']), $definition['caption']);
+            $dateString = $year.'-'.sprintf('%02d', intval($definition['month'])).'-'.sprintf('%02d', intval($definition['date']));
+            $holidays[$dateString] = new Holiday(new \DateTime($dateString), $definition['caption']);
         }
 
         return $holidays;
