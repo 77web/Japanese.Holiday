@@ -40,6 +40,7 @@ class CalculatorAggregateTest extends \PHPUnit_Framework_TestCase
         $holidays = $aggregate->computeDates($year);
 
         $this->assertArrayHasKey('2014-01-01', $holidays);
-        $this->assertEquals('test holiday', $holidays['2014-01-01']);
+        $this->assertInstanceOf('\Japanese\Holiday\Entity\Holiday', $holidays['2014-01-01']);
+        $this->assertEquals('test holiday', $holidays['2014-01-01']->getName());
     }
 }
