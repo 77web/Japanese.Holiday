@@ -3,6 +3,7 @@
 
 namespace Japanese\Holiday;
 
+use Japanese\Holiday\Calculator\CalculatorAggregate;
 use Symfony\Component\Yaml\Yaml;
 
 class Repository
@@ -13,20 +14,26 @@ class Repository
     private $holidayCollection;
 
     /**
-     * @var string
-     */
-    private $configPath;
-
-    /**
      * @var AnnualCalculator
      */
     private $calculator;
 
-    public function __construct()
+    /**
+     * @var string
+     *
+     * path to directory where config files are located
+     */
+    private $configBasePath;
+
+    /**
+     * @param string|null $configBasePath
+     * @param CalculatorAggregate|null $calculator
+     */
+    public function __construct($configBasePath = null, CalculatorAggregate $calculator = null)
     {
         $this->holidayCollection = [];
-        $this->configPath = __DIR__.'/Resources/config';
-        $this->calculator = $this->createCalculator();
+        $this->configBasePath = $configBasePath ? $configBasePath : __DIR__.'/Resources/config';
+        $this->calculator = $calculator ? $calculator : $this->createCalculator();
     }
 
     public function getHolidaysForYear($year = null)
@@ -66,7 +73,7 @@ class Repository
      */
     private function createCalculator()
     {
-        $calculator = new AnnualCalculator(Yaml::parse(file_get_contents($this->configPath.'/holidays.yml')));
+        $calculator = new AnnualCalculator(Yaml::parse(file_get_contents($this->configBasePath.'/holidays.yml')));
 
         return $calculator;
     }
