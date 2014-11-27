@@ -3,7 +3,7 @@
 namespace Japanese\Holiday;
 
 use Japanese\Holiday\Calculator\Autumn;
-use Japanese\Holiday\Calculator\CalculatorAggregate;
+use Japanese\Holiday\Calculator\Aggregate\CalculatorAggregate;
 use Japanese\Holiday\Calculator\Fixed;
 use Japanese\Holiday\Calculator\HappyMonday;
 use Japanese\Holiday\Calculator\Spring;

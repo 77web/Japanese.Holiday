@@ -3,7 +3,7 @@
 
 namespace Japanese\Holiday;
 
-use Japanese\Holiday\Calculator\CalculatorAggregate;
+use Japanese\Holiday\Calculator\Aggregate\CalculatorAggregate;
 use Symfony\Component\Yaml\Yaml;
 
 class Repository
@@ -19,7 +19,6 @@ class Repository
     private $calculator;
 
     /**
-<<<<<<< HEAD
      * @var string
      *
      * path to directory where config files are located

@@ -1,9 +1,10 @@
 <?php
 
 
-namespace Japanese\Holiday\Calculator;
+namespace Japanese\Holiday\Calculator\Aggregate;
 
 use Japanese\Holiday\Entity\Holiday;
+use Japanese\Holiday\Calculator\Calculator;
 
 abstract class CalculatorAggregate
 {
@@ -23,7 +24,7 @@ abstract class CalculatorAggregate
      * @param int $year
      * @return Holiday[]
      */
-    public function computeDates($year)
+    public function computeDates($year = null)
     {
         $holidays = [];
 

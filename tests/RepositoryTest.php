@@ -76,7 +76,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
      */
     public function test_customCalculator()
     {
-        $calculator = $this->getMockBuilder('\Japanese\Holiday\Calculator\CalculatorAggregate')
+        $calculator = $this->getMockBuilder('\Japanese\Holiday\Calculator\Aggregate\CalculatorAggregate')
             ->setMethods(['computeDates'])
             ->getMockForAbstractClass()
         ;
