@@ -17,7 +17,8 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $future = $futureDate->format('Y');
 
         return [
-            [2014],
+            [2014], // 設定ファイルあり
+            [$future], // 設定ファイルなし
         ];
     }
 

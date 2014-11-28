@@ -24,7 +24,7 @@ abstract class CalculatorAggregate
      * @param int $year
      * @return Holiday[]
      */
-    public function computeDates($year = null)
+    public function computeDates($year)
     {
         $holidays = [];
 
