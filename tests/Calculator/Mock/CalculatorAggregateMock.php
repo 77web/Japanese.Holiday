@@ -3,7 +3,7 @@
 
 namespace Japanese\Holiday\Calculator\Mock;
 
-use Japanese\Holiday\Calculator\CalculatorAggregate;
+use Japanese\Holiday\Calculator\Aggregate\CalculatorAggregate;
 
 class CalculatorAggregateMock extends CalculatorAggregate
 {

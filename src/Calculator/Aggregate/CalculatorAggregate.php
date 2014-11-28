@@ -1,9 +1,10 @@
 <?php
 
 
-namespace Japanese\Holiday\Calculator;
+namespace Japanese\Holiday\Calculator\Aggregate;
 
 use Japanese\Holiday\Entity\Holiday;
+use Japanese\Holiday\Calculator\Calculator;
 
 abstract class CalculatorAggregate
 {

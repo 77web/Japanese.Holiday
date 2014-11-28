@@ -9,101 +9,108 @@ use Japanese\Holiday\Entity\Holiday;
 class RepositoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @test
+     * @return array
      */
-    public function test_getHolidaysForYear()
+    public function provideYears()
+    {
+        $futureDate = new \DateTime('+3 year');
+        $future = $futureDate->format('Y');
+
+        return [
+            [2014], // 設定ファイルあり
+            [$future], // 設定ファイルなし
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider provideYears
+     */
+    public function test_getHolidaysForYear($year)
     {
         $repository = new Repository();
-        $holidays = $repository->getHolidaysForYear(2014);
+        $holidays = $repository->getHolidaysForYear($year);
 
         $this->assertInternalType('array', $holidays);
     }
 
     /**
      * @test
+     * @dataProvider provideYears
      */
-    public function test_isHoliday()
+    public function test_isHoliday($year)
     {
         $repository = new Repository();
 
-        $this->assertTrue($repository->isHoliday('2014-01-01'));
+        $this->assertTrue($repository->isHoliday($year.'-01-01'));
     }
 
     /**
      * @test
+     * @dataProvider provideYears
      */
-    public function test_getHolidayName()
+    public function test_getHolidayName($year)
     {
         $repository = new Repository();
 
-        $this->assertEquals('元旦', $repository->getHolidayName('2014-01-01'));
-        $this->assertNull($repository->getHolidayName('2014-01-02'));
+        $this->assertEquals('元旦', $repository->getHolidayName($year.'-01-01'));
+        $this->assertNull($repository->getHolidayName($year.'-01-31'));
     }
 
     /**
      * @test
+     * @dataProvider provideYears
      */
-    public function test_getHoliday()
+    public function test_getHoliday($year)
     {
         $repository = new Repository();
-        $holiday = $repository->getHoliday('2014-01-01');
 
+        $holiday = $repository->getHoliday($year.'-01-01');
         $this->assertInstanceOf('\Japanese\Holiday\Entity\Holiday', $holiday);
         $this->assertEquals('元旦', $holiday->getName());
-        $this->assertEquals('2014-01-01', $holiday->getDate()->format('Y-m-d'));
+        $this->assertEquals($year.'-01-01', $holiday->getDate()->format('Y-m-d'));
 
-        $businessDay = $repository->getHoliday('2014-01-31');
-        $this->assertNull($businessDay);
+        $this->assertNull($repository->getHoliday($year.'-01-31'));
     }
 
     /**
      * @test
+     * @dataProvider provideYears
      */
-    public function test_getHolidayDate()
+    public function test_getHolidayDate($year)
     {
         $repository = new Repository();
 
-        $date = $repository->getHolidayDate(2014, '元旦');
+        $date = $repository->getHolidayDate($year, '元旦');
         $this->assertInstanceOf('\DateTime', $date);
-        $this->assertEquals('2014-01-01', $date->format('Y-m-d'));
+        $this->assertEquals($year.'-01-01', $date->format('Y-m-d'));
 
-        $businessDayDate = $repository->getHoliday(2014, 'あああああ');
+        $businessDayDate = $repository->getHoliday($year, 'あああああ');
         $this->assertNull($businessDayDate);
     }
 
-    /**
-     * @test
-     */
-    public function test_customCalculator()
+    public function test_customCalculatorRepository()
     {
-        $calculator = $this->getMockBuilder('\Japanese\Holiday\Calculator\CalculatorAggregate')
-            ->setMethods(['computeDates'])
-            ->getMockForAbstractClass()
-        ;
-        $year = 2014;
         $dummyHolidays = [
-            '2014-01-31' => new Holiday(new \DateTime('2014-01-31'), 'テスト休日'),
+            '2014-01-31' => new Holiday(new \DateTime('2014-01-31'), 'Dummy holiday'),
         ];
-
+        $calcRepository = $this->getMockBuilder('\Japanese\Holiday\Calculator\Repository')->disableOriginalConstructor()->getMock();
+        $calculator = $this->getMock('\Japanese\Holiday\AnnualCalculator');
+        $calcRepository
+            ->expects($this->once())
+            ->method('find')
+            ->with(2014)
+            ->will($this->returnValue($calculator))
+        ;
         $calculator
             ->expects($this->once())
             ->method('computeDates')
-            ->with($year)
+            ->with(2014)
             ->will($this->returnValue($dummyHolidays))
         ;
 
-        $repository = new Repository(__DIR__, $calculator);
-
-        $this->assertEquals($dummyHolidays, $repository->getHolidaysForYear($year));
-
-        $this->assertTrue($repository->isHoliday('2014-01-31'));
-        $this->assertInstanceOf('\Japanese\Holiday\Entity\Holiday', $repository->getHoliday('2014-01-31'));
-        $this->assertEquals('テスト休日', $repository->getHolidayName('2014-01-31'));
-        $this->assertEquals('2014-01-31', $repository->getHolidayDate(2014, 'テスト休日')->format('Y-m-d'));
-
-        $this->assertFalse($repository->isHoliday('2014-01-01'));
-        $this->assertNull($repository->getHoliday('2014-01-01'));
-        $this->assertNull($repository->getHolidayName('2014-01-01'));
-        $this->assertNull($repository->getHolidayDate('2014', '元旦'));
+        $repository = new Repository($calcRepository);
+        $holidays = $repository->getHolidaysForYear(2014);
+        $this->assertEquals($dummyHolidays, $holidays);
     }
 }

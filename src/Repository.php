@@ -3,8 +3,7 @@
 
 namespace Japanese\Holiday;
 
-use Japanese\Holiday\Calculator\CalculatorAggregate;
-use Symfony\Component\Yaml\Yaml;
+use Japanese\Holiday\Calculator\Repository as CalculatorRepository;
 
 class Repository
 {
@@ -14,27 +13,17 @@ class Repository
     private $holidayCollection;
 
     /**
-     * @var AnnualCalculator
+     * @var CalculatorRepository
      */
-    private $calculator;
+    private $calculatorRepository;
 
     /**
-<<<<<<< HEAD
-     * @var string
-     *
-     * path to directory where config files are located
+     * @param CalculatorRepository $calculatorRepository
      */
-    private $configBasePath;
-
-    /**
-     * @param string|null $configBasePath
-     * @param CalculatorAggregate|null $calculator
-     */
-    public function __construct($configBasePath = null, CalculatorAggregate $calculator = null)
+    public function __construct(CalculatorRepository $calculatorRepository = null)
     {
         $this->holidayCollection = [];
-        $this->configBasePath = $configBasePath ? $configBasePath : __DIR__.'/Resources/config';
-        $this->calculator = $calculator ? $calculator : $this->createCalculator();
+        $this->calculatorRepository = $calculatorRepository ? $calculatorRepository : $this->createCalculatorRepository();
     }
 
     /**
@@ -107,11 +96,11 @@ class Repository
     /**
      * @return AnnualCalculator
      */
-    private function createCalculator()
+    private function createCalculatorRepository()
     {
-        $calculator = new AnnualCalculator(Yaml::parse(file_get_contents($this->configBasePath.'/holidays.yml')));
+        $annualCalculator = new AnnualCalculator();
 
-        return $calculator;
+        return new CalculatorRepository($annualCalculator);
     }
 
     /**
@@ -120,7 +109,7 @@ class Repository
     private function loadHolidaysForYear($year)
     {
         if (!isset($this->holidayCollection[$year])) {
-            $this->holidayCollection[$year] = $this->calculator->computeDates($year);
+            $this->holidayCollection[$year] = $this->calculatorRepository->find($year)->computeDates($year);
         }
     }
 } 
