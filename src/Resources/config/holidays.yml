@@ -7,6 +7,7 @@ constitution_day: { type: fixed, month: 5, date: 3, caption: "憲法記念日" }
 green_day: { type: fixed, month: 5, date: 4, caption: "みどりの日" }
 children_day: { type: fixed, month: 5, date: 5, caption: "子供の日" }
 marine_day: { type: happymonday, month: 7, seq: 3, caption: "海の日" }
+mountain_day: { type: fixed, month: 8, date: 11, caption: "山の日" }
 aged_day: { type: happymonday, month: 9, seq: 3, caption: "敬老の日" }
 autumn_day: { type: autumn, month: 9, caption: "秋分の日" }
 sports_day: { type: happymonday, month: 10, seq: 2, caption: "体育の日" }
