@@ -28,7 +28,7 @@ class Repository
 
     /**
      * @param int|null $year
-     * @return \Japanese\Holiday\Entity\Holiday
+     * @return \Japanese\Holiday\Entity\Holiday[]
      */
     public function getHolidaysForYear($year = null)
     {
