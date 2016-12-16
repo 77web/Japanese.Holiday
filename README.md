@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/77web/Japanese.Holiday.svg?branch=master)](https://travis-ci.org/77web/Japanese.Holiday)
+
 # Japanese.Holiday
 
 calculates holidays in Japan.
