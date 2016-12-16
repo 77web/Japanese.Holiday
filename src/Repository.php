@@ -94,7 +94,7 @@ class Repository
     }
 
     /**
-     * @return AnnualCalculator
+     * @return CalculatorRepository
      */
     private function createCalculatorRepository()
     {
