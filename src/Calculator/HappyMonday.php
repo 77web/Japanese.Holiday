@@ -14,7 +14,8 @@ class HappyMonday implements Calculator
     public function computeDate($year, array $definition = null)
     {
         $ts = mktime(0, 0, 0, $definition['month'], 1, $year);
-        $firstMondayTs = strtotime('first monday', $ts);
+        $month = date('F', $ts);
+        $firstMondayTs = strtotime('first monday of ' . $month . ' ' . $year);
         if (!$firstMondayTs) {
             throw new DateNotFoundException;
         }
