@@ -18,6 +18,18 @@
     caption: 昭和の日
     month: '4'
     date: '29'
+'2019-04-30':
+    caption: 国民の休日
+    month: 4
+    date: 30
+'2019-05-01':
+    caption: 天皇即位の日
+    month: 5
+    date: 1
+'2019-05-02':
+    caption: 国民の休日
+    month: 5
+    date: 2
 '2019-05-03':
     caption: 憲法記念日
     month: '5'
@@ -58,6 +70,10 @@
     caption: 体育の日
     month: '10'
     date: '14'
+'2019-10-22':
+    caption: 即位礼正殿の儀の日
+    month: 10
+    date: 22
 '2019-11-03':
     caption: 文化の日
     month: '11'
