@@ -11,6 +11,6 @@ marine_day: { type: happymonday, month: 7, seq: 3, caption: "海の日" }
 mountain_day: { type: fixed, month: 8, date: 11, caption: "山の日" }
 aged_day: { type: happymonday, month: 9, seq: 3, caption: "敬老の日" }
 autumn_day: { type: autumn, month: 9, caption: "秋分の日" }
-sports_day: { type: happymonday, month: 10, seq: 2, caption: "体育の日" }
+sports_day: { type: happymonday, month: 10, seq: 2, caption: "スポーツの日" }
 culture_day: { type: fixed, month: 11, date: 3, caption: "文化の日" }
 thanks_giving_day: { type: fixed, month: 11, date: 23, caption: "勤労感謝の日" }
