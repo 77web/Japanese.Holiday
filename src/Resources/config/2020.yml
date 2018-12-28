@@ -38,14 +38,18 @@
     caption: 子供の日
     month: '5'
     date: '5'
-'2020-07-20':
+'2020-07-23':
     caption: 海の日
     month: '7'
-    date: '20'
-'2020-08-11':
+    date: '23'
+'2020-07-24':
+    caption: スポーツの日
+    month: '7'
+    date: '24'
+'2020-08-10':
     caption: 山の日
     month: '8'
-    date: '11'
+    date: '10'
 '2020-09-21':
     caption: 敬老の日
     month: '9'
@@ -54,10 +58,6 @@
     caption: 秋分の日
     month: '9'
     date: '22'
-'2020-10-12':
-    caption: スポーツの日
-    month: '10'
-    date: '12'
 '2020-11-03':
     caption: 文化の日
     month: '11'
