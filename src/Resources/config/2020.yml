@@ -38,6 +38,10 @@
     caption: 子供の日
     month: '5'
     date: '5'
+'2020-05-06':
+    caption: 振替休日
+    month: '5'
+    date: '6'
 '2020-07-23':
     caption: 海の日
     month: '7'
