@@ -16,6 +16,6 @@
         "phpunit/phpunit": "~4.3"
     },
     "require": {
-        "symfony/yaml": "~2.5"
+        "symfony/yaml": "~2.5|~4.0"
     }
 }
