@@ -9,6 +9,7 @@ use Japanese\Holiday\Calculator\Calculator;
 abstract class CalculatorAggregate
 {
     const SUBSTITUTE_HOLIDAY_CAPTION = '振替休日';
+    const SANDWICHED_HOLIDAY = '国民の休日';
 
     /**
      * @var Calculator[]
@@ -64,6 +65,30 @@ abstract class CalculatorAggregate
                 $holidays[$candidateKey] = [
                     'holiday' => new Holiday($candidate, self::SUBSTITUTE_HOLIDAY_CAPTION),
                     'type' => 'substitution'
+                ];
+            }
+        }
+
+        // 3. 前日と翌日が祝日である平日を「国民の休日」として追加する
+        foreach ($baseHolidays as $data) {
+            $candidate = clone $data['holiday']->getDate();
+            $candidate->modify('+1 day');
+            $candidateKey = $candidate->format('Y-m-d');
+
+            // 土日または既に休日として登録されている日は対象外
+            if ($candidate->format('N') >= 6 || isset($holidays[$candidateKey])) {
+                continue;
+            }
+
+            $nextDate = clone $candidate;
+            $nextDate->modify('+1 day');
+            $nextDateKey = $nextDate->format('Y-m-d');
+
+            // 振替休日ではなく、国民の祝日に挟まれている場合だけ登録
+            if (isset($baseHolidays[$nextDateKey])) {
+                $holidays[$candidateKey] = [
+                    'holiday' => new Holiday($candidate, self::SANDWICHED_HOLIDAY),
+                    'type' => 'sandwiched'
                 ];
             }
         }

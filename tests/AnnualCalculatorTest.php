@@ -4,7 +4,7 @@ namespace Japanese\Holiday;
 
 use Symfony\Component\Yaml\Yaml;
 
-class AnnualAnnualCalculatorTest extends \PHPUnit_Framework_TestCase
+class AnnualAnnualCalculatorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

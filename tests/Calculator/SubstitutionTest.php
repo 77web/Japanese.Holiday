@@ -3,7 +3,7 @@
 
 namespace Japanese\Holiday\Calculator;
 
-class SubstitutionTest extends \PHPUnit_Framework_TestCase 
+class SubstitutionTest extends \PHPUnit\Framework\TestCase
 {
     public function test_computeDate()
     {

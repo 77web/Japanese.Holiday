@@ -4,7 +4,7 @@
 namespace Japanese\Holiday;
 
 
-class PastCalculatorTest extends \PHPUnit_Framework_TestCase 
+class PastCalculatorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
@@ -18,7 +18,7 @@ class PastCalculatorTest extends \PHPUnit_Framework_TestCase
         $calculator = new PastCalculator($configuration);
         $holidays = $calculator->computeDates(2014);
 
-        $this->assertInternalType('array', $holidays);
+        $this->assertIsArray($holidays);
         $this->assertEquals(1, count($holidays));
         $this->assertArrayHasKey('2014-01-31', $holidays);
         $this->assertInstanceOf('\Japanese\Holiday\Entity\Holiday', $holidays['2014-01-31']);

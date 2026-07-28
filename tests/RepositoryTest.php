@@ -6,7 +6,7 @@ namespace Japanese\Holiday;
 
 use Japanese\Holiday\Entity\Holiday;
 
-class RepositoryTest extends \PHPUnit_Framework_TestCase
+class RepositoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return array
@@ -31,7 +31,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $repository = new Repository();
         $holidays = $repository->getHolidaysForYear($year);
 
-        $this->assertInternalType('array', $holidays);
+        $this->assertIsArray($holidays);
     }
 
     /**
@@ -95,7 +95,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             '2014-01-31' => new Holiday(new \DateTime('2014-01-31'), 'Dummy holiday'),
         ];
         $calcRepository = $this->getMockBuilder('\Japanese\Holiday\Calculator\Repository')->disableOriginalConstructor()->getMock();
-        $calculator = $this->getMock('\Japanese\Holiday\AnnualCalculator');
+        $calculator = $this->createMock('\Japanese\Holiday\AnnualCalculator');
         $calcRepository
             ->expects($this->once())
             ->method('find')
