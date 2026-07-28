@@ -4,7 +4,7 @@
 namespace Japanese\Holiday\Entity;
 
 
-class HolidayTest extends \PHPUnit_Framework_TestCase 
+class HolidayTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param \DateTime $targetDate

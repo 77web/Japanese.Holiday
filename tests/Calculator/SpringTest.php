@@ -4,7 +4,7 @@
 namespace Japanese\Holiday\Calculator;
 
 
-class SpringTest extends \PHPUnit_Framework_TestCase 
+class SpringTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param int $year

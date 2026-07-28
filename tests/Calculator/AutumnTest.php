@@ -4,7 +4,7 @@
 namespace Japanese\Holiday\Calculator;
 
 
-class AutumnTest extends \PHPUnit_Framework_TestCase 
+class AutumnTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param int $year

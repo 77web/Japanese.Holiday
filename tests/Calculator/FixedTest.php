@@ -2,7 +2,7 @@
 
 namespace Japanese\Holiday\Calculator;
 
-class FixedTest extends \PHPUnit_Framework_TestCase
+class FixedTest extends \PHPUnit\Framework\TestCase
 {
     public function test_computeDate()
     {

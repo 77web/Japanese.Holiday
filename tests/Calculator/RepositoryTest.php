@@ -4,7 +4,7 @@
 namespace Japanese\Holiday\Calculator;
 
 
-class RepositoryTest extends \PHPUnit_Framework_TestCase 
+class RepositoryTest extends \PHPUnit\Framework\TestCase
 {
     public function test_find()
     {
